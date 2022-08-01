@@ -68,6 +68,7 @@ final class GithubOAuthorizator: NSObject, ObservableObject, OAuthorizator {
   private func requestCodeExchange(code: String) {
     api.fetch(request: .codeExchange(code: code))
       .map(self.parseToken)
+      .receive(on: DispatchQueue.main)
       .sink { [weak self] value in
         switch value {
         case .failure(let error):
