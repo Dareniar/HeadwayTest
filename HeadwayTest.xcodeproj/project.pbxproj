@@ -11,6 +11,15 @@
 		CEAECB752897D81900E52841 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAECB742897D81900E52841 /* ContentView.swift */; };
 		CEAECB772897D81C00E52841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAECB762897D81C00E52841 /* Assets.xcassets */; };
 		CEAECB7A2897D81C00E52841 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAECB792897D81C00E52841 /* Preview Assets.xcassets */; };
+		CEAECB852897D93500E52841 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAECB842897D93500E52841 /* APIError.swift */; };
+		CEAECB892897D9D100E52841 /* APIFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAECB882897D9D100E52841 /* APIFetcher.swift */; };
+		CEAECB8B2897DE0400E52841 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAECB8A2897DE0400E52841 /* APIRequest.swift */; };
+		CEAECB8D2897E34E00E52841 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAECB8C2897E34E00E52841 /* APIConfig.swift */; };
+		CEAECB902897FE8400E52841 /* JSONDecoder+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAECB8F2897FE8400E52841 /* JSONDecoder+Publisher.swift */; };
+		CEAECB932898074000E52841 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEAECB922898074000E52841 /* KeychainSwift */; };
+		CEAECB962898075300E52841 /* KeychainSwift+Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAECB952898075300E52841 /* KeychainSwift+Bearer.swift */; };
+		CEAECB992898103D00E52841 /* OAuthorizator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAECB982898103D00E52841 /* OAuthorizator.swift */; };
+		CEAECB9B2898162700E52841 /* UIApplication+MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAECB9A2898162700E52841 /* UIApplication+MainWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +28,14 @@
 		CEAECB742897D81900E52841 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CEAECB762897D81C00E52841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEAECB792897D81C00E52841 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CEAECB842897D93500E52841 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		CEAECB882897D9D100E52841 /* APIFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFetcher.swift; sourceTree = "<group>"; };
+		CEAECB8A2897DE0400E52841 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		CEAECB8C2897E34E00E52841 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
+		CEAECB8F2897FE8400E52841 /* JSONDecoder+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Publisher.swift"; sourceTree = "<group>"; };
+		CEAECB952898075300E52841 /* KeychainSwift+Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainSwift+Bearer.swift"; sourceTree = "<group>"; };
+		CEAECB982898103D00E52841 /* OAuthorizator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthorizator.swift; sourceTree = "<group>"; };
+		CEAECB9A2898162700E52841 /* UIApplication+MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+MainWindow.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEAECB932898074000E52841 /* KeychainSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,8 +69,11 @@
 		CEAECB712897D81900E52841 /* HeadwayTest */ = {
 			isa = PBXGroup;
 			children = (
-				CEAECB722897D81900E52841 /* HeadwayTestApp.swift */,
 				CEAECB742897D81900E52841 /* ContentView.swift */,
+				CEAECB832897D92300E52841 /* App */,
+				CEAECB9728980F5B00E52841 /* Utilities */,
+				CEAECB822897D91A00E52841 /* API */,
+				CEAECB8E2897FE6A00E52841 /* Extensions */,
 				CEAECB762897D81C00E52841 /* Assets.xcassets */,
 				CEAECB782897D81C00E52841 /* Preview Content */,
 			);
@@ -65,6 +86,59 @@
 				CEAECB792897D81C00E52841 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CEAECB822897D91A00E52841 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				CEAECB872897D9A000E52841 /* APIFetcher */,
+				CEAECB862897D94900E52841 /* Models */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		CEAECB832897D92300E52841 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CEAECB722897D81900E52841 /* HeadwayTestApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		CEAECB862897D94900E52841 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CEAECB842897D93500E52841 /* APIError.swift */,
+				CEAECB8A2897DE0400E52841 /* APIRequest.swift */,
+				CEAECB8C2897E34E00E52841 /* APIConfig.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CEAECB872897D9A000E52841 /* APIFetcher */ = {
+			isa = PBXGroup;
+			children = (
+				CEAECB882897D9D100E52841 /* APIFetcher.swift */,
+			);
+			path = APIFetcher;
+			sourceTree = "<group>";
+		};
+		CEAECB8E2897FE6A00E52841 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEAECB8F2897FE8400E52841 /* JSONDecoder+Publisher.swift */,
+				CEAECB952898075300E52841 /* KeychainSwift+Bearer.swift */,
+				CEAECB9A2898162700E52841 /* UIApplication+MainWindow.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CEAECB9728980F5B00E52841 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CEAECB982898103D00E52841 /* OAuthorizator.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +157,9 @@
 			dependencies = (
 			);
 			name = HeadwayTest;
+			packageProductDependencies = (
+				CEAECB922898074000E52841 /* KeychainSwift */,
+			);
 			productName = HeadwayTest;
 			productReference = CEAECB6F2897D81900E52841 /* HeadwayTest.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +188,9 @@
 				Base,
 			);
 			mainGroup = CEAECB662897D81900E52841;
+			packageReferences = (
+				CEAECB912898074000E52841 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+			);
 			productRefGroup = CEAECB702897D81900E52841 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,6 +219,14 @@
 			files = (
 				CEAECB752897D81900E52841 /* ContentView.swift in Sources */,
 				CEAECB732897D81900E52841 /* HeadwayTestApp.swift in Sources */,
+				CEAECB962898075300E52841 /* KeychainSwift+Bearer.swift in Sources */,
+				CEAECB902897FE8400E52841 /* JSONDecoder+Publisher.swift in Sources */,
+				CEAECB8D2897E34E00E52841 /* APIConfig.swift in Sources */,
+				CEAECB992898103D00E52841 /* OAuthorizator.swift in Sources */,
+				CEAECB892897D9D100E52841 /* APIFetcher.swift in Sources */,
+				CEAECB8B2897DE0400E52841 /* APIRequest.swift in Sources */,
+				CEAECB852897D93500E52841 /* APIError.swift in Sources */,
+				CEAECB9B2898162700E52841 /* UIApplication+MainWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +427,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CEAECB912898074000E52841 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CEAECB922898074000E52841 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEAECB912898074000E52841 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEAECB672897D81900E52841 /* Project object */;
 }
