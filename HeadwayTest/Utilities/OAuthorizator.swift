@@ -100,7 +100,6 @@ final class GithubOAuthorizator: NSObject, OAuthorizator, ObservableObject {
         self?.authError = nil
         if let token = text {
           KeychainSwift().saveToken(token)
-          print(token)
           self?.isAuthorized = true
         }
       }

@@ -26,6 +26,7 @@ struct RepositoryRow: View {
     }
     .opacity(viewModel.isViewed ? 0.3 : 1)
     .padding(.vertical, 10)
+    .contentShape(Rectangle())
     .onTapGesture {
       viewModel.rowTapped()
     }
