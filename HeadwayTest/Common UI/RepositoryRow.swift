@@ -6,23 +6,31 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct RepositoryRow: View {
-  let repository: Repository
+  @ObservedObject var viewModel: RepositoryRowViewModel
+    
+  init(repository: Repository, cache: Cache? = nil) {
+    self.viewModel = RepositoryRowViewModel(repository: repository, cache: cache)
+  }
   
   var body: some View {
     VStack(alignment: .leading, spacing: 5) {
-      Text(repository.name).font(.title3).bold()
-      if let description = repository.description {
+      Text(viewModel.repository.name).font(.title3).bold()
+      if let description = viewModel.repository.repoDescription {
         Text(description)
+          .frame(maxHeight: 120)
       }
-      Text(repository.stars).fontWeight(.light)
+      Text(viewModel.repository.stars).fontWeight(.light)
     }
+    .opacity(viewModel.isViewed ? 0.3 : 1)
     .padding(.vertical, 10)
     .onTapGesture {
-      if let url = repository.url {
-        UIApplication.shared.open(url)
-      }
+      viewModel.rowTapped()
+    }
+    .onAppear {
+      viewModel.onAppear()
     }
   }
 }

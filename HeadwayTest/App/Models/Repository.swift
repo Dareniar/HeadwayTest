@@ -5,21 +5,26 @@
 //  Created by Danil on 01.08.2022.
 //
 
+import RealmSwift
 import Foundation
 
-struct Repository: Identifiable {
-  let id = UUID()
-  let name: String
-  let stars: String
-  let description: String?
-  let url: URL?
+final class Repository: Object, ObjectKeyIdentifiable {
+  @Persisted(primaryKey: true) var id: ObjectId
+  @Persisted var name = ""
+  @Persisted var stars = ""
+  @Persisted var repoDescription: String? = nil
+  @Persisted var urlString = ""
+  
+  var url: URL? {
+    URL(string: urlString)
+  }
   
   static func preview() -> Repository {
-    Repository(
-      name: "Headway",
-      stars: "⭐️ 2.4k",
-      description: "Bite-sized learning app that gives you key ideas",
-      url: URL(string: "https://apps.get-headway.com")
-    )
+    let repository = Repository()
+    repository.name = "Headway"
+    repository.stars = "⭐️ 2.4k"
+    repository.repoDescription = "Bite-sized learning app that gives you key ideas"
+    repository.urlString = "https://apps.get-headway.com"
+    return repository
   }
 }

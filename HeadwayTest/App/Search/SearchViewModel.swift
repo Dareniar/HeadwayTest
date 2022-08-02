@@ -18,6 +18,8 @@ final class SearchViewModel: ObservableObject {
   
   private let authorizator: OAuthorizator
   
+  let cache: Cache
+  
   private let loader: SearchLoadable
   private var isLoading = false
   
@@ -26,10 +28,14 @@ final class SearchViewModel: ObservableObject {
   private var disposables = Set<AnyCancellable>()
 
   init(
-    authorizator: OAuthorizator, loader: SearchLoadable, scheduler: DispatchQueue = DispatchQueue(label: "SearchQueue")
+    authorizator: OAuthorizator,
+    loader: SearchLoadable,
+    cache: Cache,
+    scheduler: DispatchQueue = DispatchQueue(label: "SearchQueue")
   ) {
     self.authorizator = authorizator
     self.loader = loader
+    self.cache = cache
     
     $searchQuery
       .dropFirst(1)

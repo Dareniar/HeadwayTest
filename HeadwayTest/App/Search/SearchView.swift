@@ -43,7 +43,7 @@ private extension SearchView {
   var reposSection: some View {
     Section {
       ForEach(viewModel.repositories) { repository in
-        RepositoryRow(repository: repository)
+        RepositoryRow(repository: repository, cache: viewModel.cache)
           .onAppear {
             viewModel.searchMore(currentItem: repository)
           }
@@ -71,7 +71,8 @@ struct SearchView_Previews: PreviewProvider {
   static var previews: some View {
     SearchView(viewModel: SearchViewModel(
       authorizator: GithubOAuthorizator(api: APIFetcher()),
-      loader: SearchLoader(api: APIFetcher())
+      loader: SearchLoader(api: APIFetcher()),
+      cache: CacheHandler()
     ))
   }
 }

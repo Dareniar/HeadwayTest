@@ -30,7 +30,12 @@ struct RepositoryResponse: Decodable {
     case description
   }
   
-  func toLocal() -> Repository {
-    .init(name: name, stars: "⭐️ \(starsCount)", description: description, url: URL(string: urlString))
+  func realm() -> Repository {
+    let repo = Repository()
+    repo.name = name
+    repo.stars = "⭐️ \(starsCount)"
+    repo.repoDescription = description
+    repo.urlString = urlString
+    return repo
   }
 }

@@ -27,6 +27,10 @@
 		CEAFF1A028986FDF00452E99 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAFF19F28986FDF00452E99 /* SearchViewModel.swift */; };
 		CEAFF1A22898798700452E99 /* SearchLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAFF1A12898798700452E99 /* SearchLoader.swift */; };
 		CEAFF1A428987AC100452E99 /* SearchReposResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAFF1A328987AC100452E99 /* SearchReposResponse.swift */; };
+		CEAFF1A728993AB700452E99 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = CEAFF1A628993AB700452E99 /* Realm */; };
+		CEAFF1A928993AB700452E99 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEAFF1A828993AB700452E99 /* RealmSwift */; };
+		CEAFF1AC28993E2000452E99 /* CacheHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAFF1AB28993E2000452E99 /* CacheHandler.swift */; };
+		CEAFF1AE2899491C00452E99 /* RepositoryRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAFF1AD2899491C00452E99 /* RepositoryRowViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +54,8 @@
 		CEAFF19F28986FDF00452E99 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		CEAFF1A12898798700452E99 /* SearchLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLoader.swift; sourceTree = "<group>"; };
 		CEAFF1A328987AC100452E99 /* SearchReposResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchReposResponse.swift; sourceTree = "<group>"; };
+		CEAFF1AB28993E2000452E99 /* CacheHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheHandler.swift; sourceTree = "<group>"; };
+		CEAFF1AD2899491C00452E99 /* RepositoryRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryRowViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEAFF1A928993AB700452E99 /* RealmSwift in Frameworks */,
+				CEAFF1A728993AB700452E99 /* Realm in Frameworks */,
 				CEAECB932898074000E52841 /* KeychainSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				CEAECB982898103D00E52841 /* OAuthorizator.swift */,
+				CEAFF1AB28993E2000452E99 /* CacheHandler.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -182,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				CEAECBAA28983B2800E52841 /* RepositoryRow.swift */,
+				CEAFF1AD2899491C00452E99 /* RepositoryRowViewModel.swift */,
 			);
 			path = "Common UI";
 			sourceTree = "<group>";
@@ -212,6 +222,8 @@
 			name = HeadwayTest;
 			packageProductDependencies = (
 				CEAECB922898074000E52841 /* KeychainSwift */,
+				CEAFF1A628993AB700452E99 /* Realm */,
+				CEAFF1A828993AB700452E99 /* RealmSwift */,
 			);
 			productName = HeadwayTest;
 			productReference = CEAECB6F2897D81900E52841 /* HeadwayTest.app */;
@@ -243,6 +255,7 @@
 			mainGroup = CEAECB662897D81900E52841;
 			packageReferences = (
 				CEAECB912898074000E52841 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				CEAFF1A528993AB700452E99 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = CEAECB702897D81900E52841 /* Products */;
 			projectDirPath = "";
@@ -275,8 +288,10 @@
 				CEAECB732897D81900E52841 /* HeadwayTestApp.swift in Sources */,
 				CEAECB962898075300E52841 /* KeychainSwift+Bearer.swift in Sources */,
 				CEAECB902897FE8400E52841 /* JSONDecoder+Publisher.swift in Sources */,
+				CEAFF1AC28993E2000452E99 /* CacheHandler.swift in Sources */,
 				CEAECBA1289830AE00E52841 /* SearchView.swift in Sources */,
 				CEAECB8D2897E34E00E52841 /* APIConfig.swift in Sources */,
+				CEAFF1AE2899491C00452E99 /* RepositoryRowViewModel.swift in Sources */,
 				CEAFF1A028986FDF00452E99 /* SearchViewModel.swift in Sources */,
 				CEAECBA72898341900E52841 /* Repository.swift in Sources */,
 				CEAECB9E28982F2E00E52841 /* HistoryView.swift in Sources */,
@@ -497,6 +512,14 @@
 				kind = branch;
 			};
 		};
+		CEAFF1A528993AB700452E99 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -504,6 +527,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEAECB912898074000E52841 /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
+		};
+		CEAFF1A628993AB700452E99 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEAFF1A528993AB700452E99 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		CEAFF1A828993AB700452E99 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEAFF1A528993AB700452E99 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

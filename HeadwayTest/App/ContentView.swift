@@ -25,7 +25,10 @@ struct ContentView: View {
 private extension ContentView {
   private var searchViewModel: SearchViewModel {
     let api = APIFetcher()
-    return SearchViewModel(authorizator: GithubOAuthorizator(api: api), loader: SearchLoader(api: api))
+    let auth = GithubOAuthorizator(api: api)
+    let loader = SearchLoader(api: api)
+    let cache = CacheHandler()
+    return SearchViewModel(authorizator: auth, loader: loader, cache: cache)
   }
 }
 

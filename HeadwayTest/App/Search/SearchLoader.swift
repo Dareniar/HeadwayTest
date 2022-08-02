@@ -28,7 +28,7 @@ final class SearchLoader: SearchLoadable {
     return api.fetch(request: .searchRepos(query: query, page: page))
       .map { [weak self] (response: SearchReposResponse) in
         self?.totalCount = response.totalCount
-        return response.items.map { $0.toLocal() }
+        return response.items.map { $0.realm() }
       }
       .receive(on: DispatchQueue.main)
       .eraseToAnyPublisher()
