@@ -11,7 +11,7 @@ struct Repository: Identifiable {
   let id = UUID()
   let name: String
   let stars: String
-  let description: String
+  let description: String?
   let url: URL?
   
   static func preview() -> Repository {

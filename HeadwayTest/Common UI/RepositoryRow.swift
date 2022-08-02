@@ -13,7 +13,9 @@ struct RepositoryRow: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 5) {
       Text(repository.name).font(.title3).bold()
-      Text(repository.description)
+      if let description = repository.description {
+        Text(description)
+      }
       Text(repository.stars).fontWeight(.light)
     }
     .padding(.vertical, 10)

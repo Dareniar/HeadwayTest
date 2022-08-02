@@ -54,11 +54,17 @@ final class SearchViewModel: ObservableObject {
   func searchRepositories(withReset: Bool = true) {
     if withReset || searchQuery.isEmpty {
       currentPage = 1
-      repositories.removeAll()
+      DispatchQueue.main.async { [weak self] in
+        self?.repositories.removeAll()
+      }
+    }
+    guard !searchQuery.isEmpty else {
+      return
     }
     isLoading = true
     loader.search(query: searchQuery, page: currentPage)
       .zip(loader.search(query: searchQuery, page: currentPage + 1))
+      .receive(on: DispatchQueue.main)
       .sink { [weak self] value in
         switch value {
         case .failure(let error):

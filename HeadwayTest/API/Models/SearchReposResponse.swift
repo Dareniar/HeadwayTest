@@ -19,7 +19,7 @@ struct SearchReposResponse: Decodable {
 
 struct RepositoryResponse: Decodable {
   let name: String
-  let description: String
+  let description: String?
   let urlString: String
   let starsCount: Int
   
