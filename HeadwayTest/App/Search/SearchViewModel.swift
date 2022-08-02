@@ -106,6 +106,8 @@ final class SearchViewModel: ObservableObject {
   func authorize() {
     if isAuthorized {
       authorizator.deauthorize()
+      searchQuery = ""
+      searchRepositories()
     } else {
       authorizator.authorize()
     }
