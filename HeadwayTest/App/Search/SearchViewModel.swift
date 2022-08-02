@@ -19,6 +19,7 @@ final class SearchViewModel: ObservableObject {
   private let authorizator: OAuthorizator
   
   private let loader: SearchLoadable
+  private var isLoading = false
   
   private var currentPage = 1
   
@@ -55,6 +56,7 @@ final class SearchViewModel: ObservableObject {
       currentPage = 1
       repositories.removeAll()
     }
+    isLoading = true
     loader.search(query: searchQuery, page: currentPage)
       .zip(loader.search(query: searchQuery, page: currentPage + 1))
       .sink { [weak self] value in
@@ -66,15 +68,25 @@ final class SearchViewModel: ObservableObject {
           break
         }
       } receiveValue: { [weak self] in
-        self?.repositories.append(contentsOf: $0.0)
-        self?.repositories.append(contentsOf: $0.1)
+        var newRepos = $0.0
+        newRepos.append(contentsOf: $0.1)
+        self?.repositories.append(contentsOf: newRepos)
         self?.error = nil
         self?.showError = false
+        self?.isLoading = false
       }
       .store(in: &disposables)
   }
   
-  func searchMore() {
+  func searchMore(currentItem: Repository) {
+    guard
+      let index = repositories.firstIndex(where: { currentItem.id == $0.id }),
+      index > repositories.count - 6,
+      loader.totalCount > repositories.count,
+      !isLoading
+    else {
+      return
+    }
     currentPage += 2
     searchRepositories(withReset: false)
   }

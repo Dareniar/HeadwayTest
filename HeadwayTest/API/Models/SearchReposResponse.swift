@@ -8,7 +8,13 @@
 import Foundation
 
 struct SearchReposResponse: Decodable {
+  let totalCount: Int
   let items: [RepositoryResponse]
+  
+  private enum CodingKeys: String, CodingKey {
+    case totalCount = "total_count"
+    case items
+  }
 }
 
 struct RepositoryResponse: Decodable {

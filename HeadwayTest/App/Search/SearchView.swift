@@ -42,7 +42,12 @@ private extension SearchView {
   
   var reposSection: some View {
     Section {
-      ForEach(viewModel.repositories, content: RepositoryRow.init(repository:))
+      ForEach(viewModel.repositories) { repository in
+        RepositoryRow(repository: repository)
+          .onAppear {
+            viewModel.searchMore(currentItem: repository)
+          }
+      }
     }
   }
   
