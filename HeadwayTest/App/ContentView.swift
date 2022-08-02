@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
   var body: some View {
     TabView {
-      SearchView()
+      SearchView(viewModel: searchViewModel)
         .tabItem {
           Label("Search", systemImage: "text.magnifyingglass")
         }
@@ -19,6 +19,13 @@ struct ContentView: View {
           Label("History", systemImage: "archivebox")
         }
     }
+  }
+}
+
+private extension ContentView {
+  private var searchViewModel: SearchViewModel {
+    let api = APIFetcher()
+    return SearchViewModel(authorizator: GithubOAuthorizator(api: api), loader: SearchLoader(api: api))
   }
 }
 

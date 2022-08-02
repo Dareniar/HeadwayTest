@@ -12,18 +12,27 @@ import Combine
 
 /// Defines basic behavior for OAuth
 protocol OAuthorizator {
-  var isAuthorizedPublisher: Published<Bool>.Publisher { get }
-  var authorizationErrorPublisher: Published<APIError?>.Publisher { get }
+  var isAuthorizedPublished: Published<Bool>.Publisher { get }
+  var showErrorPublished: Published<Bool>.Publisher { get }
+  var authError: APIError? { get }
+  
   func authorize()
+  func deauthorize()
 }
 
-final class GithubOAuthorizator: NSObject, ObservableObject, OAuthorizator {
+final class GithubOAuthorizator: NSObject, OAuthorizator, ObservableObject {
   
-  @Published private var isAuthorized: Bool
-  var isAuthorizedPublisher: Published<Bool>.Publisher { $isAuthorized }
+  @Published var isAuthorized: Bool
+  var isAuthorizedPublished: Published<Bool>.Publisher { $isAuthorized }
   
-  @Published private var authError: APIError?
-  var authorizationErrorPublisher: Published<APIError?>.Publisher { $authError }
+  private(set) var authError: APIError? {
+    didSet {
+      showError = authError != nil
+    }
+  }
+  
+  var showErrorPublished: Published<Bool>.Publisher { $showError }
+  @Published private var showError: Bool
   
   private let api: APIFetchable
   
@@ -33,6 +42,7 @@ final class GithubOAuthorizator: NSObject, ObservableObject, OAuthorizator {
     self.api = api
     self.authError = nil
     self.isAuthorized = KeychainSwift().getToken() != nil
+    self.showError = false
     super.init()
   }
 
@@ -65,6 +75,11 @@ final class GithubOAuthorizator: NSObject, ObservableObject, OAuthorizator {
     }
   }
   
+  func deauthorize() {
+    KeychainSwift().resetToken()
+    isAuthorized = false
+  }
+  
   private func requestCodeExchange(code: String) {
     api.fetch(request: .codeExchange(code: code))
       .map(self.parseToken)
@@ -81,6 +96,7 @@ final class GithubOAuthorizator: NSObject, ObservableObject, OAuthorizator {
         if let token = text {
           KeychainSwift().saveToken(token)
           print(token)
+          self?.isAuthorized = true
         }
       }
       .store(in: &disposables)

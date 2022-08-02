@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-struct SearchView: View {
+struct SearchView: View  {
+  @ObservedObject var viewModel: SearchViewModel
   
-  @State var text = ""
-  let repos = Array(repeating: Repository.preview(), count: 100)
+  init(viewModel: SearchViewModel) {
+    self.viewModel = viewModel
+  }
   
   var body: some View {
     NavigationView {
@@ -23,29 +25,48 @@ struct SearchView: View {
         loginButton
       }
     }
+    .alert(isPresented: $viewModel.showError) {
+      errorAlert
+    }
   }
 }
 
 private extension SearchView {
   var searchField: some View {
-    TextField("Type here to search", text: $text)
+    TextField(
+      viewModel.isAuthorized ? "Type here to search" : "Sign In to search",
+      text: $viewModel.searchQuery
+    )
+    .disabled(!viewModel.isAuthorized)
   }
   
   var reposSection: some View {
     Section {
-      ForEach(repos, content: RepositoryRow.init(repository:))
+      ForEach(viewModel.repositories, content: RepositoryRow.init(repository:))
     }
   }
   
   var loginButton: some View {
-    Button("Sign In") {
-      
+    Button(viewModel.isAuthorized ? "Sign Out" : "Sign In") {
+      viewModel.authorize()
     }
+  }
+  
+  var errorAlert: Alert {
+    let error = viewModel.error ?? .network(description: "")
+    return Alert(
+      title: Text(error.alertTitle),
+      message: Text(error.message),
+      dismissButton: .cancel(Text("Ok"))
+    )
   }
 }
 
 struct SearchView_Previews: PreviewProvider {
   static var previews: some View {
-    SearchView()
+    SearchView(viewModel: SearchViewModel(
+      authorizator: GithubOAuthorizator(api: APIFetcher()),
+      loader: SearchLoader(api: APIFetcher())
+    ))
   }
 }

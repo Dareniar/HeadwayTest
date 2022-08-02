@@ -15,7 +15,13 @@ struct RepositoryRow: View {
       Text(repository.name).font(.title3).bold()
       Text(repository.description)
       Text(repository.stars).fontWeight(.light)
-    }.padding(.vertical, 10)
+    }
+    .padding(.vertical, 10)
+    .onTapGesture {
+      if let url = repository.url {
+        UIApplication.shared.open(url)
+      }
+    }
   }
 }
 
