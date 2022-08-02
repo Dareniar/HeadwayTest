@@ -25,6 +25,7 @@ struct SearchView: View  {
         loginButton
       }
     }
+    .navigationViewStyle(.stack)
     .alert(isPresented: $viewModel.showError) {
       errorAlert
     }

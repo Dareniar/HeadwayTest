@@ -12,11 +12,16 @@ import Combine
 
 /// Defines basic behavior for OAuth
 protocol OAuthorizator {
+  /// Publisher for authorization state
   var isAuthorizedPublished: Published<Bool>.Publisher { get }
+  /// Publisher for checking if error alert should be displayed
   var showErrorPublished: Published<Bool>.Publisher { get }
+  /// Error received during authorization
   var authError: APIError? { get }
   
+  /// Authorize using OAuth
   func authorize()
+  /// Sign out from authorized app
   func deauthorize()
 }
 

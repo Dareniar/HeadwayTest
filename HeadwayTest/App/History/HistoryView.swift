@@ -6,17 +6,19 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct HistoryView: View {
-  let repos = Array(repeating: Repository.preview(), count: 100)
-  
+  @ObservedResults(Repository.self) var repositories
+
   var body: some View {
     NavigationView {
-      List(repos) { repo in
+      List(repositories.reversed()) { repo in
         RepositoryRow(repository: repo)
       }
       .navigationTitle("History 📚")
     }
+    .navigationViewStyle(.stack)
   }
 }
 

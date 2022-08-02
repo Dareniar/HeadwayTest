@@ -8,8 +8,14 @@
 import SwiftUI
 import RealmSwift
 
+/// Defines behavior for working with Realm cache
 protocol Cache {
-  func isSaved(repository: Repository) -> Bool 
+  /// Indicates if repository was saved to cache
+  /// - Parameter repository: Repository to check
+  /// - Returns: _true_ if repository is saved to cache, otherwise _false_
+  func isSaved(repository: Repository) -> Bool
+  /// Save repository to Realm
+  /// - Parameter repository: Repository to save
   func save(repository: Repository)
 }
 
@@ -22,8 +28,8 @@ final class CacheHandler: Cache {
       return
     }
     try? realm.write {
-      if repositories.count == 20, let lastRepo = repositories.last {
-        realm.delete(lastRepo)
+      if repositories.count == 20, let firstRepo = repositories.first {
+        realm.delete(firstRepo)
       }
       realm.add(repository)
     }
